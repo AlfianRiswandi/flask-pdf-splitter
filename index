@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Split PDF Otomatis</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h2 class="mt-5">Split PDF dari Folder</h2>
+        <p>Masukkan urutan nama file hasil pemisahan (pisahkan dengan koma).</p>
+
+        <form id="pdfForm">
+            <div class="mb-3">
+                <label for="folder_path" class="form-label">Masukkan path folder tempat file PDF:</label>
+                <input type="text" class="form-control" id="folder_path" name="folder_path" required placeholder="Contoh: C:\Users\alfian\Documents\pdf">
+            </div>
+
+            <div class="mb-3">
+                <label for="order" class="form-label">Masukkan urutan kategori (pisahkan dengan koma):</label>
+                <input type="text" class="form-control" id="order" name="order" required placeholder="Contoh: PDL, PK, BA">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Proses PDF</button>
+        </form>
+
+        <p id="loading" style="display: none; color: blue;">Sedang memproses, harap tunggu...</p>
+        <div id="result"></div>
+    </div>
+</body>
+</html>
