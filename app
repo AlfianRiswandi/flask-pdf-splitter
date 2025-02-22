@@ -56,14 +56,14 @@ def index():
         order_input = request.form.get("order")
         
         if not os.path.exists(folder_path):
-            return render_template("Tampilan.html", error="Path folder tidak valid!")
+            return render_template("index.html", error="Path folder tidak valid!")
         
         order_list = [x.strip() for x in order_input.split(",")]  # Konversi ke list
         
         processed_files = split_pdf(folder_path, order_list)
-        return render_template("Tampilan.html", processed_files=processed_files)
+        return render_template("index.html", processed_files=processed_files)
     
-    return render_template("Tampilan.html", processed_files={}, error="")
+    return render_template("index.html", processed_files={}, error="")
 
 if __name__ == "__main__":
     app.run(debug=True)
