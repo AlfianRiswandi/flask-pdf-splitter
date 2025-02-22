@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Split PDF Otomatis</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h2 class="mt-5">Split PDF dari Folder</h2>
+        <p>Masukkan urutan nama file hasil pemisahan (pisahkan dengan koma).</p>
+
+        <!-- Tampilkan pesan error jika ada -->
+        {% if error %}
+            <div class="alert alert-danger">{{ error }}</div>
+        {% endif %}
+
+        <form action="/" method="POST">
+            <div class="mb-3">
+                <label for="folder_path" class="form-label">Masukkan path folder tempat file PDF:</label>
+                <input type="text" class="form-control" id="folder_path" name="folder_path" required placeholder="Contoh: C:\Users\alfian\Documents\pdf">
+            </div>
+
+            <div class="mb-3">
+                <label for="order" class="form-label">Masukkan urutan kategori (pisahkan dengan koma):</label>
+                <input type="text" class="form-control" id="order" name="order" required placeholder="Contoh: PDL, PK, BA">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Proses PDF</button>
+        </form>
+
+        <hr>
+
+        <!-- Tampilkan hasil proses jika ada -->
+        {% if processed_files %}
+            <h3 class="mt-4">Hasil Split PDF:</h3>
+            <ul class="list-group">
+                {% for user, files in processed_files.items() %}
+                    <li class="list-group-item">
+                        <strong>{{ user }}</strong>
+                        <ul>
+                            {% for file in files %}
+                                <li>{{ file }}</li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+</body>
+</html>
